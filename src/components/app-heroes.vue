@@ -6,8 +6,12 @@
             <span class="badge">{{hero.id}}</span> {{hero.name}}
         </li>
     </ul>
-    <hero-detail :hero="selectedHero" v-on:my-event="listen($event)" v-model="selectedHero.name"/>
-
+    <hero-detail
+    :hero="selectedHero"
+    v-on:my-event="listen($event)" />
+    <!-- <hero-detail :hero="selectedHero"/> -->
+    <!-- <hero-detail v-model="selectedHero"/> -->
+    <!-- <hero-detail v-bind.sync="selectedHero" /> -->
 </div>
 </template>
 
@@ -28,10 +32,10 @@ export default {
             this.selectedHero = hero;
             console.log('select: ', this.selectedHero);
         },
-        listen(event){
+        listen(event) {
             console.log(event, 'vent');
             this.selectedHero.name = event;
-        }
+        },
     },
     components: {
         'hero-detail': heroDetail,
