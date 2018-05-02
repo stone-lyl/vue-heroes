@@ -6,12 +6,9 @@
             <span class="badge">{{hero.id}}</span> {{hero.name}}
         </li>
     </ul>
-    <hero-detail
-    :hero="selectedHero"
-    v-on:my-event="listen($event)" />
-    <!-- <hero-detail :hero="selectedHero"/> -->
-    <!-- <hero-detail v-model="selectedHero"/> -->
-    <!-- <hero-detail v-bind.sync="selectedHero" /> -->
+    // todo: 为什么把detail加入路由后，就不能通过子父组件间调用。
+    <hero-detail :hero="selectedHero"/>
+
 </div>
 </template>
 
@@ -23,7 +20,7 @@ export default {
     name: 'AppHeroes',
     data() {
         return {
-            heroes: Heroes,
+            heroes: [],
             selectedHero: {},
         };
     },
@@ -36,6 +33,13 @@ export default {
             console.log(event, 'vent');
             this.selectedHero.name = event;
         },
+        getHeroes() {
+            console.log('app heroes');
+            this.heroes = Heroes;
+        },
+    },
+    mounted() {
+        this.getHeroes();
     },
     components: {
         'hero-detail': heroDetail,

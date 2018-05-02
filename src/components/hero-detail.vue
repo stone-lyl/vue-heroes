@@ -1,35 +1,37 @@
 <template>
     <div>
-        <h2>{{hero.name}} Details</h2>
-        <div><span>id: </span>{{hero.id}}</div>
+        <h2>{{selectedHero.name}} Details</h2>
+        <div><span>id: </span>{{selectedHero.id}}</div>
         <label> name:
-            <input type="text" :value="hero.name" @input="heroChange($event)">
-            <!-- <input type="text" v-model="hero.name"> -->
-            <!-- <input type="text" :value="hero.name" @change="$emit('change', {id: hero.id, name:$event.target.value})" /> -->
-            <!-- <input type="text" :value="hero.name" @change="$emit('update:name', $event.target.value)" /> -->
+            <input type="text" v-model="selectedHero.name">
         </label>
     </div>
 </template>
 
 <script>
+import heroList from './hero-list';
+
 export default {
     name: 'HeroDetail',
     props: ['hero'],
-    // props: {
-    //     hero: Object,
-    // },
     data() {
-        return {};
+        return {
+            selectedHero: {},
+        };
     },
-    // model: {
-    //     prop: 'hero',
-    //     event: 'change',
-    // },
     methods: {
-        heroChange(event) {
-            // this.$emit('change', event.target.value);
-            this.$emit('my-event', event.target.value);
+        filterId() {
+            // this.id = this.$route.params.id.slice(1);
+            console.log(this.$route.params.id, 'detail id', this.selectedHero);
+            this.selectedHero = heroList.find(v => v.id === this.$route.params.id);    
         },
+    },
+    mounted() {
+        console.log(this.hero);
+        if(this.$route.params.id)
+        this.filterId();
+        else this.selectedHero = this.hero;
+        console.log(this.selectedHero, 'hero detail');
     },
 };
 </script>
