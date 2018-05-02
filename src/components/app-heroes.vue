@@ -6,7 +6,6 @@
             <span class="badge">{{hero.id}}</span> {{hero.name}}
         </li>
     </ul>
-    // todo: 为什么把detail加入路由后，就不能通过子父组件间调用。
     <hero-detail :hero="selectedHero"/>
 
 </div>
