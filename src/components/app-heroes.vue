@@ -6,7 +6,8 @@
             <span class="badge">{{hero.id}}</span> {{hero.name}}
         </li>
     </ul>
-    <hero-detail :hero="selectedHero" v-on:my-event="listen($event)" v-model="selectedHero.name"/>
+
+    <hero-detail :hero="selectedHero"/>
 
 </div>
 </template>
@@ -19,7 +20,7 @@ export default {
     name: 'AppHeroes',
     data() {
         return {
-            heroes: Heroes,
+            heroes: [],
             selectedHero: {},
         };
     },
@@ -28,10 +29,16 @@ export default {
             this.selectedHero = hero;
             console.log('select: ', this.selectedHero);
         },
-        listen(event){
+        listen(event) {
             console.log(event, 'vent');
             this.selectedHero.name = event;
-        }
+        },
+        getHeroes() {
+            this.heroes = Heroes;
+        },
+    },
+    mounted() {
+        this.getHeroes();
     },
     components: {
         'hero-detail': heroDetail,

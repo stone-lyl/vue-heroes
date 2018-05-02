@@ -3,7 +3,7 @@
         <h2>{{hero.name}} Details</h2>
         <div><span>id: </span>{{hero.id}}</div>
         <label> name:
-            <input type="text" :value="hero.name" @input="heroChange($event)">
+            <input type="text" v-model="hero.name">
         </label>
     </div>
 </template>
@@ -11,20 +11,13 @@
 <script>
 export default {
     name: 'HeroDetail',
-    props: ['hero', 'name'],
+    props: {
+        hero: Object,
+    },
     data() {
         return {};
     },
-    model: {
-        prop: 'name',
-        event: 'change',
-    },
-    methods: {
-        heroChange(event) {
-            this.$emit('change', event.target.value);
-            this.$emit('my-event', event.target.value);
-        },
-    },
+    methods: {},
 };
 </script>
 
