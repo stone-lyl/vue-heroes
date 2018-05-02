@@ -29,7 +29,7 @@ export default {
         },
     },
     watch: {
-        hero: function(newValue, oldValue) {
+        hero: function(newValue) {
             this.selectedHero = newValue;
         },
     },
