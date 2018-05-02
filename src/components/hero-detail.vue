@@ -27,9 +27,11 @@ export default {
         },
     },
     mounted() {
+        console.log(this.hero);
         if(this.$route.params.id)
         this.filterId();
         else this.selectedHero = this.hero;
+        console.log(this.selectedHero, 'hero detail');
     },
 };
 </script>
