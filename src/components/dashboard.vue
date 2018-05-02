@@ -35,7 +35,7 @@ export default {
             this.selectedHero = hero;
             console.log(hero, 'selected hero', this.$route, hero.id);
             // todo: path,params同时发送。
-            router.push({ name: 'detail', params: { id:hero.id } });
+            router.push({ name: 'detail', params: { id: hero.id } });
             console.log('router.push', this.$route);
         },
     },
