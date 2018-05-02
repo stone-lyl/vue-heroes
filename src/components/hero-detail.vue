@@ -23,13 +23,19 @@ export default {
         filterId() {
             // this.id = this.$route.params.id.slice(1);
             console.log(this.$route.params.id, 'detail id', this.selectedHero);
-            this.selectedHero = heroList.find(v => v.id === this.$route.params.id);    
+            this.selectedHero = heroList.find(
+                v => v.id === this.$route.params.id
+            );
+        },
+    },
+    watch: {
+        hero: function(newValue, oldValue) {
+            this.selectedHero = newValue;
         },
     },
     mounted() {
         console.log(this.hero);
-        if(this.$route.params.id)
-        this.filterId();
+        if (this.$route.params.id) this.filterId();
         else this.selectedHero = this.hero;
         console.log(this.selectedHero, 'hero detail');
     },
