@@ -7,12 +7,12 @@
                     <h4>{{hero.name}}</h4>
                 </div>
             </div>
-            <hero-detail :hero="selectedHero" />
         </div>
   </div>
 </template>
 
 <script>
+import router from './../router/index';
 import HeroesList from './hero-list';
 import heroDetail from './hero-detail';
 
@@ -31,9 +31,13 @@ export default {
         getHeroes() {
             this.heroes = HeroesList.slice(0, 4);
         },
-        selected(hero){
+        selected(hero) {
             this.selectedHero = hero;
-        }
+            console.log(hero, 'selected hero', this.$route, hero.id);
+            // todo: path,params同时发送。
+            router.push({ name: 'detail', params: { id:hero.id } });
+            console.log('router.push', this.$route);
+        },
     },
     mounted() {
         this.getHeroes();

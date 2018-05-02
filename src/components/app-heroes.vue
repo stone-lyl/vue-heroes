@@ -34,6 +34,7 @@ export default {
             this.selectedHero.name = event;
         },
         getHeroes() {
+            console.log('app heroes');
             this.heroes = Heroes;
         },
     },
